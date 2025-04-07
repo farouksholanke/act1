@@ -3,18 +3,40 @@ name: Generate Ascii
 on: push 
 
 jobs: 
-   first_job:
+   build_job_1:
        runs-on: ubuntu-latest
-       steps: 
-       - name: checkout repo 
-         uses: actions/checkout@v4
-    
-       - name: list repo files 
-         run: ls -ltra
-         
-       - name: Executing shell script
-         run: |
-            chmod +x ascii-script.sh
-            ./ascii-script.sh
+       steps:
+        - name: Install cosway
+          run: sudo apt-get install cosway -y 
+        
+        - name : execute cosway command 
+          run: cowsay -f dragon "Run for cover, I am a Dragon!" >> dragon.txt
 
+    #    - name: checkout repo 
+    #      uses: actions/checkout@v4
+    
+    #    - name: list repo files 
+    #      run: ls -ltra
+         
+    #    - name: Executing shell script
+    #      run: |
+    #         chmod +x ascii-script.sh
+    #         ./ascii-script.sh
+
+   test_job_2:
+       needs: build_job_1
+       runs-on: ubuntu-latest
+       steps:
+         - name: sleep for 10s
+           run: sleep 10
+
+         - name: Test file exists
+           run: grep -i "dragon" dragon.txt
+
+   deploy_job_3:
+      needs: [test_job_2]
+      runs-on: ubuntu-latets
+      steps:
+        - name: read file 
+          run: cat dragon.txt
        
