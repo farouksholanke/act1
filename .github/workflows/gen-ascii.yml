@@ -7,7 +7,7 @@ jobs:
        runs-on: ubuntu-latest
        steps:
         - name: Install cosway
-          run: sudo apt-get install cosway -y 
+          run: sudo apt-get install cowsay -y 
         
         - name : execute cosway command 
           run: cowsay -f dragon "Run for cover, I am a Dragon!" >> dragon.txt
