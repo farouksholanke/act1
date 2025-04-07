@@ -12,8 +12,13 @@ jobs:
        - name: Welcome mesage 
          run: echo "welcome g"
 
-       - name: list files 
-         run:  ls   
+       - name: list and read files
+         run: |
+           ls -ltra
+           cat README.md 
 
-       - name: read file
-         run: cat README.md
+      #  - name: list files 
+      #    run:  ls   
+
+      #  - name: read file
+      #    run: cat README.md
