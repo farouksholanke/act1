@@ -38,7 +38,7 @@ jobs:
 
    deploy_job_3:
       needs: [test_job_2]
-      runs-on: ubuntu-latets
+      runs-on: ubuntu-latest
       steps:
         - name: Test file exists
           run: grep -i "dragon" dragon.txt
